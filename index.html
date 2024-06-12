@@ -66,7 +66,6 @@
     <div class="fixed top-6 left-6 right-6 z-50 text-gray-200 bg-slate-700 rounded-lg p-4 hidden" id="pesan"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
-        // const clipboard = FlowbiteInstances.getInstance('CopyClipboard', 'npm-install');
         const $defaultMessage = document.getElementById('default-message');
         const $successMessage = document.getElementById('success-message');
         const tombolCopy = document.getElementById('tombol-copy');
@@ -127,7 +126,7 @@
                 const key = kunci.value;
                 const algorithm = algoritma.value;
 
-                let decryptedText;
+                let decryptedText = '';
 
                 try {
                     if (algorithm === 'DES') {
@@ -173,9 +172,6 @@
         kunci.addEventListener('click', () => {
             kunci.select();
         });
-
-        // clipboard.updateOnCopyCallback((clipboard) => {
-        // })
     </script>
 </body>
 </html>
