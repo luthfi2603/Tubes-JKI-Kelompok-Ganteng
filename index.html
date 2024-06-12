@@ -15,48 +15,42 @@
                 <p>Silakan masukkan teks yang ingin anda enkripsi dan dekripsi</p>
             </div>
         </header>
-
         <!-- CONTENT -->
-         <div class="flex flex-col gap-3 w-9/12 border border-1 rounded-lg bg-white py-3 items-center justify-center">
+        <div class="flex flex-col gap-3 w-9/12 border border-1 rounded-lg bg-white py-3 items-center justify-center mb-10">
             <div class="flex w-full justify-center">
-                <select class="select select-primary w-full max-w-xs">
-                    <option disabled selected>Pilih algoritma</option>
+                <select id="algoritma" class="select select-primary w-full max-w-xs">
+                    <option value="">Pilih algoritma</option>
                     <option>DES</option>
-                    <option>Blowfish</option>
-                    <option>RC2</option>
-                  </select>
+                    <option>AES</option>
+                    <option>RC4</option>
+                </select>
             </div>
             <div class="flex gap-2 justify-center">
-                <button class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Enkripsi</button>
-                <button class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Dekripsi</button>
+                <button id="enkripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Enkripsi</button>
+                <button id="dekripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Dekripsi</button>
             </div>
-
             <div class="flex flex-col border-2 border-black rounded-lg w-8/12 p-3">
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col ">
                         <p class="text-2xl text-black font-bold">Enkripsi Teks</p>
                         <p class="text-base text-black italic font-normal">Mengubah plain teks menjadi cipher teks</p>
                     </div>
-
                     <div class="flex flex-col gap-1">
-                        <label for="plain" class="text-lg font-semibold text-black">Masukkan teks</label>
-                        <input type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full" />
+                        <label for="masukan" class="text-lg font-semibold text-black">Masukkan teks</label>
+                        <input id="masukan" type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full" />
                     </div>
-
                     <div class="flex flex-col gap-1">
-                        <label for="plain" class="text-lg font-semibold text-black">Key</label>
-                        <input type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full" />
+                        <label for="kunci" class="text-lg font-semibold text-black">Key</label>
+                        <input id="kunci" type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full" />
                     </div>
-
                     <div class="flex flex-col gap-1">
                         <p class="text-xl font-semibold text-black">Hasil</p>
-                        
                         <div class="grid grid-cols-8 gap-2 w-full max-w-[23rem]">
-                            <label for="npm-install" class="sr-only">Label</label>
-                            <input id="npm-install" type="text" class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="npm install flowbite" disabled readonly>
-                            <button data-copy-to-clipboard-target="npm-install" class="col-span-2 text-white bg-indigo-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
+                            <label for="hasil" class="sr-only">Label</label>
+                            <input id="hasil" type="text" class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Result">
+                            <button id="tombol-copy" class="col-span-2 text-white bg-indigo-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
                                 <span id="default-message">Copy</span>
-                                <span id="success-message" class="hidden inline-flex items-center">
+                                <span id="success-message" class="hidden items-center">
                                     <svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
                                     </svg>
@@ -64,33 +58,124 @@
                                 </span>
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>
-
          </div>
     </div>
-
+    <div class="fixed top-6 left-6 right-6 z-50 text-gray-200 bg-slate-700 rounded-lg p-4 hidden" id="pesan"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
-        
+        // const clipboard = FlowbiteInstances.getInstance('CopyClipboard', 'npm-install');
+        const $defaultMessage = document.getElementById('default-message');
+        const $successMessage = document.getElementById('success-message');
+        const tombolCopy = document.getElementById('tombol-copy');
+        const hasil = document.getElementById('hasil');
+        const enkripsi = document.getElementById('enkripsi');
+        const dekripsi = document.getElementById('dekripsi');
+        const masukan = document.getElementById('masukan');
+        const kunci = document.getElementById('kunci');
+        const algoritma = document.getElementById('algoritma');
+        const pesan = document.getElementById('pesan');
+
+        tombolCopy.addEventListener('click', () => {
+            hasil.select();
+
+            document.execCommand("copy");
+
+            $defaultMessage.classList.add('hidden');
+            $successMessage.classList.remove('hidden');
+            $successMessage.classList.add('inline-flex');
     
-    const clipboard = FlowbiteInstances.getInstance('CopyClipboard', 'npm-install');
-    const $defaultMessage = document.getElementById('default-message');
-    const $successMessage = document.getElementById('success-message');
+            setTimeout(() => {
+                $defaultMessage.classList.remove('hidden');
+                $successMessage.classList.add('hidden');
+                $successMessage.classList.remove('inline-flex');
+            }, 2000);
+        });
 
-    clipboard.updateOnCopyCallback((clipboard) => {
-        $defaultMessage.classList.add('hidden');
-        $successMessage.classList.remove('hidden');
+        enkripsi.addEventListener('click', () => {
+            if(masukan.value && kunci.value && algoritma.value){
+                const plaintext = masukan.value;
+                const key = kunci.value;
+                const algorithm = algoritma.value;
 
-        // reset to default state
-        setTimeout(() => {
-            $defaultMessage.classList.remove('hidden');
-            $successMessage.classList.add('hidden');
-        }, 2000);
-    })
+                let encryptedText;
 
+                if (algorithm === 'DES') {
+                    encryptedText = CryptoJS.DES.encrypt(plaintext, key).toString();
+                } else if (algorithm === 'AES') {
+                    encryptedText = CryptoJS.AES.encrypt(plaintext, key).toString();
+                } else if (algorithm === 'RC4') {
+                    encryptedText = CryptoJS.RC4.encrypt(plaintext, key).toString();
+                }
 
+                hasil.value = encryptedText;
+            }else{
+                pesan.classList.remove('hidden');
+                pesan.innerHTML = 'Silahkan pilih algoritma, masukkan text, dan kunci';
+                
+                setTimeout(() => {
+                    pesan.classList.add('hidden');
+                }, 2000);
+            }
+        });
+
+        dekripsi.addEventListener('click', () => {
+            if(masukan.value && kunci.value && algoritma.value){
+                const cipherText = masukan.value;
+                const key = kunci.value;
+                const algorithm = algoritma.value;
+
+                let decryptedText;
+
+                try {
+                    if (algorithm === 'DES') {
+                        decryptedText = CryptoJS.DES.decrypt(cipherText, key).toString(CryptoJS.enc.Utf8);
+                    } else if (algorithm === 'AES') {
+                        decryptedText = CryptoJS.AES.decrypt(cipherText, key).toString(CryptoJS.enc.Utf8);
+                    } else if (algorithm === 'RC4') {
+                        decryptedText = CryptoJS.RC4.decrypt(cipherText, key).toString(CryptoJS.enc.Utf8);
+                    }
+                }catch(e){
+                    pesan.classList.remove('hidden');
+                    pesan.innerHTML = 'Dekripsi gagal!';
+                
+                    setTimeout(() => {
+                        pesan.classList.add('hidden');
+                    }, 2000);
+                }
+
+                hasil.value = decryptedText;
+
+                if(!hasil.value){
+                    pesan.classList.remove('hidden');
+                    pesan.innerHTML = 'Dekripsi gagal!';
+                
+                    setTimeout(() => {
+                        pesan.classList.add('hidden');
+                    }, 2000);
+                }
+            }else{
+                pesan.classList.remove('hidden');
+                pesan.innerHTML = 'Silahkan pilih algoritma, masukkan text, dan kunci';
+                
+                setTimeout(() => {
+                    pesan.classList.add('hidden');
+                }, 2000);
+            }
+        });
+
+        masukan.addEventListener('click', () => {
+            masukan.select();
+        });
+        
+        kunci.addEventListener('click', () => {
+            kunci.select();
+        });
+
+        // clipboard.updateOnCopyCallback((clipboard) => {
+        // })
     </script>
 </body>
 </html>
