@@ -10,56 +10,59 @@
     <div class="w-full flex flex-col justify-center items-center md:max-w-screen-lg mx-auto ">
         <!-- HEADER -->
         <header>
-            <div class="flex flex-col items-center py-10 gap-1 text-white">
+            <div class="flex flex-col items-center py-10 px-4 gap-1 text-white text-center">
                 <p class="text-3xl font-bold">Enkripsi dan Dekripsi Teks</p>
                 <p>Silakan masukkan teks yang ingin anda enkripsi dan dekripsi</p>
             </div>
         </header>
         <!-- CONTENT -->
-        <div class="flex flex-col gap-3 w-9/12 border border-1 rounded-lg bg-white py-3 items-center justify-center mb-10">
-            <div class="flex w-full justify-center">
-                <select id="algoritma" class="select select-primary w-full max-w-xs">
-                    <option value="">Pilih algoritma</option>
-                    <option>DES</option>
-                    <option>AES</option>
-                    <option>RC4</option>
-                </select>
-            </div>
-            <div class="flex gap-2 justify-center">
-                <button id="enkripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Enkripsi</button>
-                <button id="dekripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Dekripsi</button>
-            </div>
-            <div class="flex flex-col border-2 border-black rounded-lg w-8/12 p-3">
+        <div class="flex flex-col gap-3 w-11/12 md:w-9/12 border border-1 rounded-lg bg-white py-3 items-center justify-center mb-10">
+            <div class="flex flex-col border-2 border-black rounded-lg w-11/12 md:w-8/12 p-3">
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col ">
                         <p class="text-2xl text-black font-bold">Enkripsi Teks</p>
                         <p class="text-base text-black italic font-normal">Mengubah plain teks menjadi cipher teks</p>
                     </div>
                     <div class="flex flex-col gap-1">
+                        <label for="algorithm" class="text-lg font-semibold text-black">Algoritma</label>
+                        <select id="algoritma" class="select select-primary w-full text-gray-200">
+                            <option value="">Pilih algoritma</option>
+                            <option>DES</option>
+                            <option>AES</option>
+                            <option>RC4</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-1">
                         <label for="masukan" class="text-lg font-semibold text-black">Masukkan teks</label>
-                        <input id="masukan" type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full" />
+                        <input id="masukan" type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full text-gray-200" />
                     </div>
                     <div class="flex flex-col gap-1">
                         <label for="kunci" class="text-lg font-semibold text-black">Key</label>
-                        <input id="kunci" type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full" />
+                        <input id="kunci" type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full text-gray-200" />
                     </div>
                     <div class="flex flex-col gap-1">
                         <p class="text-xl font-semibold text-black">Hasil</p>
-                        <div class="grid grid-cols-8 gap-2 w-full max-w-[23rem]">
+                        <div class="flex flex-col gap-1">
                             <label for="hasil" class="sr-only">Label</label>
-                            <input id="hasil" type="text" class="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Result">
-                            <button id="tombol-copy" class="col-span-2 text-white bg-indigo-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
-                                <span id="default-message">Copy</span>
-                                <span id="success-message" class="hidden items-center">
-                                    <svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                                    </svg>
-                                    Copied!
-                                </span>
-                            </button>
+                            <div class="flex gap-2">
+                                <input id="hasil" type="text" class="bg-gray-50 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-9/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Result">
+                                <button id="tombol-copy" class="text-white bg-indigo-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-3/12 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
+                                    <span id="default-message">Copy</span>
+                                    <span id="success-message" class="hidden items-center">
+                                        <svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                                        </svg>
+                                        Copied!
+                                    </span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="flex gap-2 justify-center">
+                <button id="enkripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Enkripsi</button>
+                <button id="dekripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Dekripsi</button>
             </div>
          </div>
     </div>
