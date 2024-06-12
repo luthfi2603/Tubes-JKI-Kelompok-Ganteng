@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enkripsi dan Dekripsi</title>
     <link rel="stylesheet" href="./assets/css/output.css">
+    <link rel="shortcut icon" href="assets/img/logo2.png" type="image/x-icon">
 </head>
 <body>
     <div class="w-full flex flex-col justify-center items-center md:max-w-screen-lg mx-auto ">
         <!-- HEADER -->
         <header>
             <div class="flex flex-col items-center py-10 px-4 gap-1 text-white text-center">
-                <p class="text-3xl font-bold">Enkripsi dan Dekripsi Teks</p>
-                <p>Silakan masukkan teks yang ingin anda enkripsi dan dekripsi</p>
+                <div class="flex justify-center items-center gap-2">
+                    <img src="assets/img/logo2.png" class="w-14 h-14" alt="">
+                    <p class="text-5xl font-bold">Cryptagram</p>
+                </div>
+                <p>Rahasiakan Pesan Anda. Privasi dalam Setiap Teks.</p>
             </div>
         </header>
         <!-- CONTENT -->
@@ -20,11 +24,11 @@
             <div class="flex flex-col border-2 border-black rounded-lg w-11/12 md:w-8/12 p-3">
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col ">
-                        <p class="text-2xl text-black font-bold">Enkripsi Teks</p>
-                        <p class="text-base text-black italic font-normal">Mengubah plain teks menjadi cipher teks</p>
+                        <p class="text-2xl text-black font-bold">Enkripsi dan Dekripsi Teks</p>
+                        <p class="text-base text-black italic font-normal">Silakan masukkan teks yang ingin anda enkripsi dan dekripsi</p>
                     </div>
                     <div class="flex flex-col gap-1">
-                        <label for="algorithm" class="text-lg font-semibold text-black">Algoritma</label>
+                        <label for="algoritma" class="text-lg font-semibold text-black">Algoritma</label>
                         <select id="algoritma" class="select select-primary w-full text-gray-200">
                             <option value="">Pilih algoritma</option>
                             <option>DES</option>
@@ -40,13 +44,18 @@
                         <label for="kunci" class="text-lg font-semibold text-black">Key</label>
                         <input id="kunci" type="text" placeholder="Type here" class="input input-bordered input-md w-full max-w-full text-gray-200" />
                     </div>
+                    <div class="flex gap-2 justify-center">
+                        <button id="enkripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Enkripsi</button>
+                        <button id="dekripsi" class="py-1 px-3 border-2 border-black rounded-lg text-white font-bold bg-black hover:text-black hover:bg-white">Dekripsi</button>
+                    </div>
+                    <div class="bg-black h-1 w-full"></div>
                     <div class="flex flex-col gap-1">
                         <p class="text-xl font-semibold text-black">Hasil</p>
                         <div class="flex flex-col gap-1">
                             <label for="hasil" class="sr-only">Label</label>
                             <div class="flex gap-2">
-                                <input id="hasil" type="text" class="bg-gray-50 border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-9/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Result">
-                                <button id="tombol-copy" class="text-white bg-indigo-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-3/12 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 items-center inline-flex justify-center">
+                                <input id="hasil" type="text" class="border border-gray-300 text-gray-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-9/12 p-2.5" placeholder="Result" readonly>
+                                <button id="tombol-copy" class="text-white bg-indigo-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-3/12 py-2.5 text-center items-center inline-flex justify-center">
                                     <span id="default-message">Copy</span>
                                     <span id="success-message" class="hidden items-center">
                                         <svg class="w-3 h-3 text-white me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
@@ -59,10 +68,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="flex gap-2 justify-center">
-                <button id="enkripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Enkripsi</button>
-                <button id="dekripsi" class="py-1 px-3 border-2 border-black rounded-lg text-black font-bold hover:text-white hover:bg-black">Dekripsi</button>
             </div>
          </div>
     </div>
